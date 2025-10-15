@@ -74,7 +74,12 @@ typedef INT_BITS_T(TOPK_IDX_BITS) topk_idx_t;  // int32_t or int64_t
 }  // namespace deep_ep
 
 #ifndef DISABLE_NVSHMEM
+#define nvshmemi_ibgda_device_state_d deepep_nvshmemi_ibgda_device_state_d_avoid_odr
 #include <device_host_transport/nvshmem_common_ibgda.h>
+#undef  nvshmemi_ibgda_device_state_d
+struct nvshmemi_ibgda_device_state_t;
+extern __device__ nvshmemi_ibgda_device_state_t nvshmemi_ibgda_device_state_d;
+
 #include <infiniband/mlx5dv.h>
 #include <nvshmem.h>
 #include <nvshmemx.h>
